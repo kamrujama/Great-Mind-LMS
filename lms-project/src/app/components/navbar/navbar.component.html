@@ -1,0 +1,90 @@
+<div class="nav-container">
+  <div class="logo">
+    <a routerLink="/" routerLinkActive="router-link-active" ><h1>Great<span>Mind</span></h1></a>
+  </div>
+  <div class="bars" (click)="toggleMobileNav()">
+    <span><i class="fa fa-bars"></i></span>
+  </div>
+  <div class="nav-links">
+    <ul>
+      @for (item of navItems; track item) {
+        <li [class.contact-us]="item === 'Contact Us'" (click)="handleNavClick(item)">
+            <a routerLink="{item}" routerLinkActive="router-link-active">{{item}}</a>
+            @if (item === 'Programs') {
+              <span class="arrow"><i [class]="isNavMenusOpen ? 'fa fa-angle-up' : 'fa fa-angle-down'"></i></span>
+            }
+        </li>
+      }
+    </ul>
+  </div>
+
+  @if (isNavMenusOpen) {
+  <div class="programs-wrapper">
+    <div class="close-menu" (click)="togglePrograms()"><i class="fa fa-times"></i></div>
+    <div class="category-wrapper">
+      <div class="program-category">
+        <h3>Programs <span><i class="fa fa-arrow-right"></i></span></h3>
+        <button class="intern">
+          <img src="../../assets/images/internship.png" alt="" />
+          <span>Internship Program</span>
+        </button>
+        <button class="placement">
+          <img src="../../assets/images/placement.png" alt="" />
+          <span>Placement Provision Program</span>
+        </button>
+      </div>
+      <div class="courses">
+        <h3>Available Domains</h3>
+        <div class="course-list">
+          <ul>
+            @for (item of domains; track item.Domain) {
+              <li class="domain" (click)="toggleSubMenu(item)">
+                <span>{{ item.Domain }}</span>
+                @if (item.Subdomains.length > 0) {
+                  <span><i [class]="item.isSubMenuOpened ? 'fa fa-arrow-left': 'fa fa-arrow-right'"></i></span>
+                  @if (item.isSubMenuOpened) {
+                    <ul class="subdomains">
+                      @for (subdomain of item.Subdomains; track subdomain) {
+                        <li>{{ subdomain }}</li>
+                      }
+                    </ul>
+                  }
+                }
+              </li>
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="program-footer">
+      <p>© 2024 LMS. All rights reserved.</p>
+    </div>
+  </div>
+  }
+
+  <!-- responsive navs -->
+  @if (isMobileNavOpen) {
+    <div class="mobile-nav-links">
+      <div class="overlay"></div>
+      <div class="content">
+        <ul>
+          <div class="close-modal" (click)="toggleMobileNav()"><i class="fa fa-times"></i></div>
+          <li (click)="togglePrograms()">
+            <span class="program-title">Programs</span>
+            <!-- <span class="arrow"><i [class]="isNavMenusOpen ? 'fa fa-angle-up' : 'fa fa-angle-down'"></i></span> -->
+          </li>
+          <li>
+            <span>
+              <a routerLink="/about-us" routerLinkActive="router-link-active">
+                About Us
+              </a>
+            </span>
+          </li>
+          <li><span>Carrers</span></li>
+          <li><span>LMS Login</span></li>
+          <li class="contact_us">Contact Us</li>
+        </ul>
+      </div>
+    </div>
+  }
+</div>
