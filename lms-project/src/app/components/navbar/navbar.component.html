@@ -19,7 +19,7 @@
   </div>
 
   @if (isNavMenusOpen) {
-  <div class="programs-wrapper">
+  <div class="programs-wrapper {{isNavMenusOpen ? 'active' : ''}}">
     <div class="close-menu" (click)="togglePrograms()"><i class="fa fa-times"></i></div>
     <div class="category-wrapper">
       <div class="program-category">

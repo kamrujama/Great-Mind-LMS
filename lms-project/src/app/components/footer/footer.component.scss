@@ -1,0 +1,238 @@
+.footer {
+  width: 100%;
+  height: 85vh;
+  margin-top: 20vh;
+  background-color: #e5e1e0;
+  box-sizing: border-box;
+  padding: 40px 10%;
+
+  .footer-card {
+    width: 100%;
+    height: 180px;
+    box-sizing: border-box;
+    padding: 20px;
+    background-color: #e5e1e0;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+      rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+    .footer-logo {
+      h1 {
+        font-weight: 700;
+      }
+      span {
+        color: var(--text-red);
+      }
+    }
+
+    .footer-description {
+      h1 {
+        color: var(--text-red);
+        font-weight: 300;
+      }
+
+      p {
+        font-weight: 300;
+      }
+    }
+
+    .program-links {
+      display: flex;
+
+      a {
+        display: block;
+        width: 180px;
+        height: 100px;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+
+  .footer-links {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin: 40px 0;
+    gap: 30px;
+
+    h1 {
+      font-size: var(--heading);
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+
+    ul li {
+      a {
+        color: var(--text-gray);
+        font-weight: 300;
+        font-size: var(--subheading);
+      }
+
+      cursor: pointer;
+      margin-bottom: 10px;
+
+      &:hover {
+        a {
+          color: var(--text-black);
+        }
+      }
+    }
+
+    .contact-info {
+      p {
+        color: var(--text-gray);
+        font-weight: 300;
+        font-size: var(--subheading);
+      }
+    }
+
+    .stay-connected {
+      text-align: right !important;
+
+      .social-icons {
+        display: flex;
+        gap: 20px;
+        justify-content: flex-end;
+
+        a {
+          font-size: var(--heading);
+          height: 30px;
+          width: 30px;
+          border-radius: 50%;
+          background-color: var(--bg-light);
+          text-align: center;
+          transition: color 0.2s, background-color 0.2s;
+
+          &:hover {
+            background-color: var(--bg-primary);
+            color: var(--text-white);
+          }
+        }
+      }
+    }
+  }
+
+  .footer-copyright {
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--subheading);
+    cursor: pointer;
+
+    .copyright {
+      font-weight: 300;
+    }
+
+    .support-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+
+      .icons {
+        display: flex;
+        align-items: center;
+
+        span {
+          font-weight: 300;
+        }
+
+        .contact-icon {
+          height: 30px;
+          width: 30px;
+          border-radius: 50%;
+          font-size: var(--subheading);
+          color: var(--text-blue);
+          background-color: var(--bg-light);
+          text-align: center;
+          line-height: 30px;
+          margin-right: 10px;
+        }
+      }
+    }
+
+    .whatsapp-link {
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      background-color: var(--bg-green);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: var(--heading-large);
+      cursor: pointer;
+      transition: transform 0.2s;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .footer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    margin-top: 10vh;
+
+    .footer-card {
+      display: none;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      gap: 20px;
+
+      .stay-connected {
+        text-align: center !important;
+        max-height: 100px;
+
+        .social-icons {
+          justify-content: center;
+        }
+      }
+    }
+
+    .footer-copyright {
+      flex-direction: column;
+      text-align: center;
+
+      .support-links {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin-top: 20px;
+      }
+
+      .whatsapp-link {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+      }
+    }
+  }
+}
+
+// for tablet
+@media screen and (max-width: 1044) {
+}
+
+// for desktop
+@media screen and (max-width: 1440px) {
+}

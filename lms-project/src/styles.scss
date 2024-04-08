@@ -37,6 +37,10 @@
   --bg-light: #FFFFFF;
   --bg-dark : #1C0905;
   --bg-primary: #1778f2;
+  --bg-primary-1: #55acee;
+  --bg-primary-2: #0077b5;
+  --bg-primary-3: #3b5999;
+  --bg-green: #25D366;
 
   --text-black: #1C001F;
   --text-light-black: #333333;
@@ -58,7 +62,8 @@
 }
 
 body {
-  background: url("assets/images/office-bg.jpg") no-repeat center center fixed;
+  // background: url("assets/images/office-bg.jpg") no-repeat center center fixed;
+  background-color: rgb(242, 237, 237);
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
