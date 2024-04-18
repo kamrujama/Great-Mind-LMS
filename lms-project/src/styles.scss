@@ -11,6 +11,17 @@
 }
 
 :root {
+  // color themes - light
+  --b-light-1: #e5e1e0;
+  --h-light-1: #F2EFE5;
+  --p-light-1: #C7C8CC;
+  --brdr-light-1: #C7C8CC;
+
+  // color themes - dark
+  --b-dark-1: #2B2B2B;
+  --h-dark-1: #171010;
+  --p-dark-1: #171010;
+  --brdr-dark-1: #423F3E;
   // font sizes
   --heading-large: 48px;
   --heading-medium: 32px;
@@ -34,7 +45,7 @@
   --margin-5: 5px;
 
   // colors
-  --bg-light: #FFFFFF;
+  --bg-light: #fff;
   --bg-dark : #1C0905;
   --bg-primary: #1778f2;
   --bg-primary-1: #55acee;
@@ -63,7 +74,7 @@
 
 body {
   // background: url("assets/images/office-bg.jpg") no-repeat center center fixed;
-  background-color: rgb(242, 237, 237);
+  background-color: var(--bg-light);
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

@@ -1,7 +1,6 @@
 .footer {
   width: 100%;
   height: 85vh;
-  margin-top: 20vh;
   background-color: #e5e1e0;
   box-sizing: border-box;
   padding: 40px 10%;
@@ -115,6 +114,20 @@
           }
         }
       }
+
+      .support-links {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+
+        a {
+          color: var(--text-gray);
+          font-weight: 300;
+          font-size: var(--subheading);
+        }
+
+      }
     }
   }
 
@@ -139,11 +152,18 @@
         display: flex;
         align-items: center;
 
+        a {
+          color: var(--text-gray) !important;
+          font-weight: 300 !important;
+          font-size: var(--subheading) !important;
+        }
+
         span {
           font-weight: 300;
         }
 
         .contact-icon {
+          display: inline-block;
           height: 30px;
           width: 30px;
           border-radius: 50%;
@@ -184,7 +204,6 @@
     flex-direction: column;
     align-items: center;
     height: 100%;
-    margin-top: 10vh;
 
     .footer-card {
       display: none;
@@ -201,6 +220,14 @@
         text-align: center !important;
         max-height: 100px;
 
+
+      .support-links {
+        display: flex;
+        gap: 10px;
+        flex-direction: column;
+        margin-top: 10px;
+      }
+
         .social-icons {
           justify-content: center;
         }
@@ -211,28 +238,66 @@
       flex-direction: column;
       text-align: center;
 
-      .support-links {
-        display: flex;
-        gap: 20px;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        margin-top: 20px;
-      }
-
       .whatsapp-link {
         position: fixed;
-        bottom: 20px;
+        bottom: 6rem;
         right: 20px;
       }
     }
   }
 }
 
-// for tablet
-@media screen and (max-width: 1044) {
+@media screen and (min-width: 769px) and (max-width: 1044px) {
+  .footer {
+    height: 65vh;
+    margin-top: 0;
+
+    .footer-card {
+      gap: 25px;
+
+      .footer-logo {
+        h1 {
+          font-size: var(--heading);
+        }
+      }
+
+      .footer-description {
+        h1 {
+          font-size: var(--heading);
+        }
+
+        p {
+          font-size: var(--subheading);
+        }
+      }
+
+      .program-links {
+        a {
+          width: 100px;
+          height: 100px;
+        }
+      }
+    }
+
+    .footer-links {
+      gap: 25px;
+
+      h1 {
+        font-size: var(--subheading);
+      }
+
+      .contact-info {
+        p {
+          font-size: var(--subheading);
+        }
+      }
+    }
+  }
 }
 
-// for desktop
-@media screen and (max-width: 1440px) {
+/* For desktop */
+@media screen and (min-width: 1045px) {
+  .footer {
+    height: 85vh;
+  }
 }

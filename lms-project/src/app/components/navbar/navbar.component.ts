@@ -1,106 +1,141 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { Route, Router, ActivatedRoute, IsActiveMatchOptions } from '@angular/router';
+import { NavbarService } from '../../services/header/navbar.service';
+import { CourseCardComponent } from '../reusable/cards/course-card/course-card.component';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [],
+  imports: [CourseCardComponent],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
-  @ViewChild('menusList') menusList: ElementRef | undefined;
-
-  // @HostListener('document:click', ['$event'])
-  // onDocumentClick(event: MouseEvent) {
-  //   if (!this.isNavMenusOpen) {
-  //     return;
-  //   }
-
-  //   if (this.menusList && !this.menusList.nativeElement.contains(event.target)) {
-  //     this.isNavMenusOpen = false;
-  //   }
-  // }
-
   isNavMenusOpen:boolean = false;
   isMobileNavOpen:boolean = false;
   isSubMenuOpened = false;
   selectedDomain = 'IT Domains';
+  logoPath = '';
 
-  domains = [
+  megaMenuObject = [
     {
-      'Domain': 'IT Domains',
-      'Subdomains': ['Web Development', 'Artificial Intelligence', 'Cyber Security', 'Data Science', 'Android App Development', 'IOT & Robotics', 'Blockchain Developer', 'Cloud Computing', 'Auto CAD', 'Embeded System', 'Hybrid Electronic Vehicle', 'Graphic Design'],
-      'isSubMenuOpened': false
+      "title": "Computer Science",
+      "subdomains": [
+        { "courseName": "Full Stack Web Development" },
+        { "courseName": "Android App Development" },
+        { "courseName": "Artificial Intelligence" },
+        { "courseName": "Machine Learning" },
+        { "courseName": "Data Science" },
+        { "courseName": "Cyber Security" },
+        { "courseName": "UI/UX Design" },
+        { "courseName": "Blockchain for Developer" },
+      ],
+      "icon": "fa fa-laptop",
+      "isExpanded": true
     },
     {
-      'Domain': 'Management Domain',
-      'Subdomains': ['Human Resource(HR)', 'Digital Marketing', 'Finance', 'Stock Market'],
-      'isSubMenuOpened': false
+      "title": "Electrical/Electronics",
+      "subdomains": [
+        { "courseName": "Iot and Robotics" },
+        { "courseName": "Cloud Computing" },
+        { "courseName": "Embedded System" },
+      ],
+      "icon": "fa fa-laptop",
+      "isExpanded": false
     },
     {
-      'Domain': 'Medical',
-      'Subdomains': ['Psychology', 'Genetic Engineering', 'Nanotechnology'],
-      'isSubMenuOpened': false
+      "title": "Management",
+      "subdomains": [
+        { "courseName": "Fashion Design" },
+        { "courseName": "Digital Marketing" },
+        { "courseName": "Finance" },
+        { "courseName": "Human Resource" },
+        { "courseName": "Stock Marketing" },
+        { "courseName": "Graphic Design" },
+      ],
+      "icon": "fa fa-laptop",
+      "isExpanded": false
     },
     {
-      'Domain':'Fashion Design',
-      'Subdomains':[],
-      'isSubMenuOpened': false
+      "title": "Mechanical",
+      "subdomains": [
+        { "courseName": "Hybrid & Electric Vehicle" },
+        { "courseName": "Auto Cad" },
+        { "courseName": "Construction Planning" }
+      ],
+      "icon": "fa fa-laptop",
+      "isExpanded": false
     },
     {
-      'Domain':'Drone Mechanics',
-      'Subdomains':[],
-      'isSubMenuOpened': false
-    },
-    {
-      'Domain':'Business Analytics',
-      'Subdomains':[],
-      'isSubMenuOpened': false
+      "title": "Medical",
+      "subdomains": [
+        { "courseName": "Nano technology/Genetic Engineering" },
+        { "courseName": "Psychology" }
+      ],
+      "icon": "fa fa-laptop",
+      "isExpanded": false
     }
   ]
 
-  navItems = [
-    'Programs',
-    'About Us',
-    'Carrers',
-    'LMS Login',
-    'Contact Us'
+  computerScienceSubdomains = [
+    { "courseName": "Full Stack Web Development" },
+    { "courseName": "Android App Development" },
+    { "courseName": "Artificial Intelligence" },
+    { "courseName": "Machine Learning" },
+    { "courseName": "Data Science" },
+    { "courseName": "Cyber Security" },
+    { "courseName": "UI/UX Design" },
+    { "courseName": "Blockchain for Developer" },
+  ]
+  electronicsSubdomains = [
+    { "courseName": "Iot and Robotics" },
+    { "courseName": "Cloud Computing" },
+    { "courseName": "Embedded System" },
+  ]
+  managementSubdomains = [
+    { "courseName": "Fashion Design" },
+    { "courseName": "Digital Marketing" },
+    { "courseName": "Finance" },
+    { "courseName": "Human Resource" },
+    { "courseName": "Stock Marketing" },
+    { "courseName": "Graphic Design" },
+  ]
+  mechanicalSubdomains = [
+    { "courseName": "Hybrid & Electric Vehicle" },
+    { "courseName": "Auto Cad" },
+    { "courseName": "Construction Planning" }
   ]
 
+  medicalSubdomains = [
+    { "courseName": "Nano technology/Genetic Engineering" },
+    { "courseName": "Psychology" }
+  ]
 
-
-  constructor(private elementRef: ElementRef) {}
+  constructor(private route: ActivatedRoute, private router: Router, private navbarService: NavbarService) {}
   ngOnInit() {
-
+    this.logoPath = this.navbarService.getLogoPath();
   }
 
-  outsideClick() {
-    if (this.isNavMenusOpen) {
-      this.isNavMenusOpen = false;
-    }
-  }
-  togglePrograms() {
-    this.isNavMenusOpen = !this.isNavMenusOpen;
+  getRouterLink(link:string):string {
+    return link.replace(' ', '').toLowerCase();
   }
 
-  toggleMobileNav() {
-    this.isMobileNavOpen = !this.isMobileNavOpen;
+  navigateTo(path:string) {
+    this.router.navigateByUrl(path);
+    window.scrollTo(0, 0);
   }
 
- toggleSubMenu(item:any) {
-   this.domains.forEach((domain:any) => {
-     if (domain.Domain === item.Domain) {
-       domain.isSubMenuOpened = !domain.isSubMenuOpened;
-     } else {
-       domain.isSubMenuOpened = false;
-     }
-   });
- }
+  isLinkActive(path:string) {
+    return this.router.isActive(path, false) && this.router.url === path;
+  }
 
- handleNavClick(item:any) {
-   if (item === 'Programs') {
-     this.togglePrograms();
-   }
- }
-
+  toggleProgramSubmenu(title:string) {
+    this.megaMenuObject.forEach((domain) => {
+      if(domain.title === title) {
+        domain.isExpanded = true;
+      } else {
+        domain.isExpanded = false;
+      }
+    })
+  }
 }

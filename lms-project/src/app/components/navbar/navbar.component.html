@@ -1,90 +1,128 @@
-<div class="nav-container">
-  <div class="logo">
-    <a routerLink="/" routerLinkActive="router-link-active" ><h1>Great<span>Mind</span></h1></a>
-  </div>
-  <div class="bars" (click)="toggleMobileNav()">
-    <span><i class="fa fa-bars"></i></span>
-  </div>
-  <div class="nav-links">
-    <ul>
-      @for (item of navItems; track item) {
-        <li [class.contact-us]="item === 'Contact Us'" (click)="handleNavClick(item)">
-            <a routerLink="{item}" routerLinkActive="router-link-active">{{item}}</a>
-            @if (item === 'Programs') {
-              <span class="arrow"><i [class]="isNavMenusOpen ? 'fa fa-angle-up' : 'fa fa-angle-down'"></i></span>
-            }
-        </li>
-      }
-    </ul>
-  </div>
-
-  @if (isNavMenusOpen) {
-  <div class="programs-wrapper {{isNavMenusOpen ? 'active' : ''}}">
-    <div class="close-menu" (click)="togglePrograms()"><i class="fa fa-times"></i></div>
-    <div class="category-wrapper">
-      <div class="program-category">
-        <h3>Programs <span><i class="fa fa-arrow-right"></i></span></h3>
-        <button class="intern">
-          <img src="../../assets/images/internship.png" alt="" />
-          <span>Internship Program</span>
-        </button>
-        <button class="placement">
-          <img src="../../assets/images/placement.png" alt="" />
-          <span>Placement Provision Program</span>
-        </button>
+<header class="header-container">
+  <nav>
+    <div class="wrapper">
+      <!-- logo -->
+      <div class="logo">
+        <a routerLink="/">
+          <img [src]="logoPath" alt="" />
+        </a>
       </div>
-      <div class="courses">
-        <h3>Available Domains</h3>
-        <div class="course-list">
-          <ul>
-            @for (item of domains; track item.Domain) {
-              <li class="domain" (click)="toggleSubMenu(item)">
-                <span>{{ item.Domain }}</span>
-                @if (item.Subdomains.length > 0) {
-                  <span><i [class]="item.isSubMenuOpened ? 'fa fa-arrow-left': 'fa fa-arrow-right'"></i></span>
-                  @if (item.isSubMenuOpened) {
-                    <ul class="subdomains">
-                      @for (subdomain of item.Subdomains; track subdomain) {
-                        <li>{{ subdomain }}</li>
-                      }
-                    </ul>
-                  }
+
+      <!-- nav menus -->
+      <ul class="nav-links">
+        <li><a
+          [class.active]="isLinkActive('/')"
+          (click)="navigateTo('/')">Home</a></li>
+        <li>
+          <a routerLink="/">Programs</a>
+          <div class="mega-menu">
+            <ul class="program-list">
+              @for(domain of megaMenuObject; track domain.title) {
+                <li (click)="toggleProgramSubmenu(domain.title)">
+                  <a routerLink="/" [class.active]="domain.isExpanded">
+                    <img src="https://d1vwxdpzbgdqj.cloudfront.net/s3-public-images/icons/software-engineering.svg" alt="">
+                    <header><span>{{domain.title}}</span></header>
+                    <div class="icon">
+                      <span><i class="fa fa-angle-right"></i></span>
+                    </div>
+                  </a>
+                </li>
+
+                @if(domain.isExpanded) {
+                <div class="mega-sub-menu">
+                  <ul class="program-category">
+                    @for(subdomain of domain.subdomains; track subdomain.courseName) {
+                    <li>
+                      <app-course-card [courseName]="subdomain.courseName" [height]="'120px'"></app-course-card>
+                    </li>
+                    }
+                  </ul>
+                </div>
                 }
-              </li>
-            }
+              }
+
+            </ul>
+            <div class="menu-banner">
+              <img src="../../" alt="">
+            </div>
+          </div>
+        </li>
+        <li><a
+          [class.active]="isLinkActive('/aboutus')"
+          (click)="navigateTo('/aboutus')">About Us</a></li>
+        <li><a
+          [class.active]="isLinkActive('/carrers')"
+          (click)="navigateTo('/carrers')">Careers</a></li>
+        <li><a
+          [class.active]="isLinkActive('/contact')"
+          (click)="navigateTo('/contact')">Contact Us</a></li>
+      </ul>
+
+      <!-- login -->
+      <div class="login">
+        <a routerLink="/login">Login</a>
+      </div>
+
+      <!-- bottom nav -->
+      <div class="mobile-nav-links">
+        <div class="content">
+          <ul>
+            <li>
+              <a
+                [class.active]="isLinkActive('/')"
+                (click)="navigateTo('/')"
+                exact
+              >
+                <div class="icon">
+                  <span><i class="fa fa-user"></i></span>
+                </div>
+                <div class="title">
+                  <span>Home</span>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a
+                [class.active]="isLinkActive('/aboutus')"
+                (click)="navigateTo('/aboutus')"
+              >
+                <div class="icon">
+                  <span><i class="fa fa-info-circle"></i></span>
+                </div>
+                <div class="title">
+                  <span>About us</span>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a
+                [class.active]="isLinkActive('/carrers')"
+                (click)="navigateTo('/carrers')"
+              >
+                <div class="icon">
+                  <span><i class="fa fa-briefcase"></i></span>
+                </div>
+                <div class="title">
+                  <span>Careers</span>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a
+                [class.active]="isLinkActive('/contact')"
+                (click)="navigateTo('/contact')"
+              >
+                <div class="icon">
+                  <span><i class="fa fa-phone"></i></span>
+                </div>
+                <div class="title">
+                  <span>Contact Us</span>
+                </div>
+              </a>
+            </li>
           </ul>
         </div>
       </div>
     </div>
-    <div class="program-footer">
-      <p>© 2024 LMS. All rights reserved.</p>
-    </div>
-  </div>
-  }
-
-  <!-- responsive navs -->
-  @if (isMobileNavOpen) {
-    <div class="mobile-nav-links">
-      <div class="overlay"></div>
-      <div class="content">
-        <ul>
-          <div class="close-modal" (click)="toggleMobileNav()"><i class="fa fa-times"></i></div>
-          <li (click)="togglePrograms()">
-            <span class="program-title">Programs</span>
-            <!-- <span class="arrow"><i [class]="isNavMenusOpen ? 'fa fa-angle-up' : 'fa fa-angle-down'"></i></span> -->
-          </li>
-          <li>
-            <span>
-              <a routerLink="/about-us" routerLinkActive="router-link-active">
-                About Us
-              </a>
-            </span>
-          </li>
-          <li><span>Carrers</span></li>
-          <li><span>LMS Login</span></li>
-          <li class="contact_us">Contact Us</li>
-        </ul>
-      </div>
-    </div>
-  }
-</div>
+  </nav>
+</header>

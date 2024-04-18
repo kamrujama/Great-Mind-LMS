@@ -24,10 +24,13 @@
     <div class="comapny-links">
       <h1>Company Links</h1>
       <ul>
-        <li><a href="">Home</a></li>
-        <li><a href="">About Us</a></li>
-        <li><a href="">Careerrs</a></li>
-        <li><a href="">Contact Us</a></li>
+        <li><a (click)="navigateTo('/')">Home</a></li>
+        <li>
+          <a (click)="navigateTo('/aboutus')" routerLinkActive="router-link-active"
+            >About Us</a>
+        </li>
+        <li><a (click)="navigateTo('/carrers')">Careerrs</a></li>
+        <li><a (click)="navigateTo('/contact')">Contact Us</a></li>
       </ul>
     </div>
     <div class="useful-links">
@@ -54,25 +57,23 @@
         <a href=""><i class="fa fa-twitter"></i></a>
         <a href=""><i class="fa fa-instagram"></i></a>
       </div>
+      <div class="support-links">
+        <div class="icons">
+          <a class="mail">
+            <span>{{ "support@greatmind.com" }}</span>
+          </a>
+        </div>
+        <div class="icons">
+          <a>
+            <span class="contact">+91 7651914183</span>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
-  <hr>
+  <hr />
   <div class="footer-copyright">
     <div class="copyright">© 2024 GreatMind. All rights reserved.</div>
-    <div class="support-links">
-      <div class="icons">
-        <h3 class="contact-icon"><i class="fa fa-envelope"></i></h3>
-        <a class="mail">
-          <span>{{'support@greatmind.com'}}</span>
-        </a>
-      </div>
-      <div class="icons">
-        <h3 class="contact-icon"><i class="fa fa-phone"></i></h3>
-        <h4>
-          <span class="contact">+91 123456789</span>
-        </h4>
-      </div>
-    </div>
     <div class="whatsapp-link">
       <span><i class="fa fa-whatsapp" title="Chat with us"></i></span>
     </div>
